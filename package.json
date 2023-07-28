@@ -35,6 +35,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@tsconfig/strictest": "^2.0.1",
     "markuplint": "^3.12.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
