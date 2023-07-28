@@ -2,11 +2,20 @@
   "name": "dsc-blog-frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "DSC Blog Frontend",
+  "author": "nyatinte <takumi.062757@gmail.com> (https://github.com/nyatinte/)",
+  "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ycu-engine/DSC-Blog-Frontend.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@types/node": "20.4.5",
