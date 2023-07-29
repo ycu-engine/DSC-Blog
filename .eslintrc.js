@@ -1,11 +1,23 @@
-/** @type {import("eslint").Linter.Config} */
+/**
+ * ESLintの設定
+ * -
+ * - JSDocの入力を必須に @see https://zenn.dev/wakamsha/articles/setup-eslint-plugin-jsdoc
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
   extends: [
     'next/core-web-vitals',
     'plugin:jsdoc/recommended-typescript-error',
+    'airbnb',
+    'airbnb-typescript',
+    'prettier',
   ],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   plugins: ['jsdoc'],
   rules: {
+    /** eslint-plugin-jsdoc */
     'jsdoc/require-jsdoc': [
       'error',
       {
@@ -60,5 +72,9 @@ module.exports = {
         definedTags: ['typescript', 'remarks'],
       },
     ],
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    /** Airbnbのルールを上書き */
+    'react/jsx-props-no-spreading': 'off',
   },
 }
