@@ -23,6 +23,7 @@
     "shadcn-add": "npx shadcn-ui@latest add"
   },
   "dependencies": {
+    "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
