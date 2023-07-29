@@ -19,9 +19,11 @@
     "format:check": "prettier -c .",
     "lint:fix": "eslint --fix .",
     "lint:check": "eslint .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "shadcn-add": "npx shadcn-ui@latest add"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.4.5",
     "@types/react": "18.2.17",
     "@types/react-dom": "18.2.7",
