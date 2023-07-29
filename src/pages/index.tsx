@@ -3,6 +3,9 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+/**
+ * ホーム画面
+ */
 export default function Home() {
   return (
     <main
