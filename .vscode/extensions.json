@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "formulahendry.auto-rename-tag",
+    "streetsidesoftware.code-spell-checker",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "github.copilot",
+    "usernamehw.errorlens",
+    "oderwat.indent-rainbow",
+    "yusukehirao.vscode-markuplint",
+    "yoavbls.pretty-ts-errors"
+  ]
+}
