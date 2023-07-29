@@ -76,5 +76,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     /** Airbnbのルールを上書き */
     'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': 'off',
   },
 }
