@@ -35,17 +35,11 @@ module.exports = {
           'VariableDeclaration',
           'TSInterfaceDeclaration',
           'TSTypeAliasDeclaration',
-          'TSPropertySignature',
           'TSMethodSignature',
         ],
       },
     ],
-    'jsdoc/require-param': [
-      'error',
-      {
-        checkDestructuredRoots: false,
-      },
-    ],
+    'jsdoc/require-param': 'off',
     'jsdoc/require-description': [
       'error',
       {
@@ -77,5 +71,7 @@ module.exports = {
     /** Airbnbのルールを上書き */
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',
+    'import/prefer-default-export': 'off',
+    'react/require-default-props': 'off',
   },
 }
