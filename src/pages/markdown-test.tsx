@@ -21,6 +21,11 @@ const MarkdownTest: NextPage = () => {
         integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC"
         crossOrigin="anonymous"
       />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github-dark.min.css"
+      />
+
       <h1 className="mb-4 self-center">Markdown のテストページ</h1>
       <div className="mb-2">
         <h2>入力</h2>
