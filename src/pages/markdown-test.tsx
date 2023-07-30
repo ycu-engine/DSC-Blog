@@ -15,6 +15,12 @@ const MarkdownTest: NextPage = () => {
   }
   return (
     <div className="m-4 flex flex-col gap-2">
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
+        integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC"
+        crossOrigin="anonymous"
+      />
       <h1 className="mb-4 self-center">Markdown のテストページ</h1>
       <div className="mb-2">
         <h2>入力</h2>
