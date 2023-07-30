@@ -59,5 +59,8 @@
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "ts-node": "^10.9.1"
+  },
+  "volta": {
+    "node": "20.2.0"
   }
 }
