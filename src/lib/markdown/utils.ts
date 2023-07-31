@@ -19,7 +19,7 @@ import {
   AlartSuccess,
   AlartWarning,
   alartStatus,
-} from '@/components/ui/arrart'
+} from '@/components/ui/alart'
 
 const myRemarkPlugin: Plugin = () => {
   const visitor = (node: Node) => {
