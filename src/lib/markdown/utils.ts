@@ -8,6 +8,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import remarkRehype from 'remark-rehype'
 import rehypeReact from 'rehype-react'
+import remarkPlaintext from 'remark-plain-text'
 import React from 'react'
 import type { Plugin } from 'unified'
 import type { Node } from 'mdast'
@@ -74,7 +75,7 @@ const markReactProcessor = markMdastProcessor()
     },
   })
 
-const markPlainTextProcessor = markMdastProcessor()
+const markPlainTextProcessor = markMdastProcessor().use(remarkPlaintext)
 
 /**
  * markdown to react element

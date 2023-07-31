@@ -83,6 +83,9 @@ dependencies:
   remark-math:
     specifier: ^5.1.1
     version: 5.1.1
+  remark-plain-text:
+    specifier: ^0.2.0
+    version: 0.2.0(remark@14.0.3)
   remark-rehype:
     specifier: ^10.1.0
     version: 10.1.0
@@ -5041,6 +5044,15 @@ packages:
       unified: 10.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /remark-plain-text@0.2.0(remark@14.0.3):
+    resolution: {integrity: sha512-yzDBYj3p1GUAL0n7DfWdrfNwk//Ju5pf9ZMocmKuLv3jvMqlOAG27VL7Iq3Y6g43yWQG8/50Bkz2Zzh0L6/JIA==}
+    peerDependencies:
+      remark: ^9.0.0
+    dependencies:
+      remark: 14.0.3
+      unist-util-visit: 1.4.1
     dev: false
 
   /remark-rehype@10.1.0:
