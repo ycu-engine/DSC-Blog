@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
-import { mark2react } from '@/lib/markdown/utils'
+import { markPlaintext, markReact } from '@/lib/markdown/utils'
 
 /**
  * Markdown Test Page
@@ -9,9 +9,11 @@ import { mark2react } from '@/lib/markdown/utils'
 const MarkdownTest: NextPage = () => {
   const [markdown, setMarkdown] = React.useState<string>('')
   const [react, setReact] = React.useState<React.ReactElement>()
+  const [plainText, setPlainText] = React.useState<string>()
   const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = async (e) => {
     setMarkdown(e.target.value)
-    mark2react(e.target.value).then((element) => setReact(element))
+    markReact(e.target.value).then((element) => setReact(element))
+    markPlaintext(e.target.value).then((text) => setPlainText(text))
   }
   return (
     <div className="m-4 flex flex-col gap-2">
@@ -34,6 +36,10 @@ const MarkdownTest: NextPage = () => {
       <div className="mb-2">
         <h2>Markdown</h2>
         <div>{react}</div>
+      </div>
+      <div className="mb-2">
+        <h2>Plain Text</h2>
+        <div>{plainText}</div>
       </div>
     </div>
   )

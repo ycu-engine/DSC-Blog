@@ -50,34 +50,47 @@ const myRemarkPlugin: Plugin = () => {
   return myRemark
 }
 
-/**
- * markdown to react JSX
- * @param markdown markdown
- * @returns react JSX
- */
-export const mark2react = async (markdown: string) => {
-  const result = await remark()
-    .use(remarkGfm)
-    .use(remarkFrontmatter)
-    .use(remarkMath)
-    .use(remarkDirective)
-    .use(myRemarkPlugin)
-    .use(remarkRehype)
-    .use(rehypeKatex)
-    .use(rehypeHighlight, { detect: true, ignoreMissing: true })
-    .use(rehypeReact, {
-      createElement: React.createElement,
-      Fragment: React.Fragment,
-      components: {
-        ['error' as keyof JSX.IntrinsicElements]: AlartError,
-        ['success' as keyof JSX.IntrinsicElements]: AlartSuccess,
-        ['warning' as keyof JSX.IntrinsicElements]: AlartWarning,
-        ['info' as keyof JSX.IntrinsicElements]: AlartInfo,
-      },
-    })
-    .process(markdown)
-  const react = result.result
-  return react
-}
-
 export type { AlartStatus }
+
+const markMdastProcessor = remark()
+  .use(remarkGfm)
+  .use(remarkFrontmatter)
+  .use(remarkMath)
+  .use(remarkDirective)
+  .use(myRemarkPlugin)
+
+const markReactProcessor = markMdastProcessor()
+  .use(remarkRehype)
+  .use(rehypeKatex)
+  .use(rehypeHighlight, { detect: true, ignoreMissing: true })
+  .use(rehypeReact, {
+    createElement: React.createElement,
+    Fragment: React.Fragment,
+    components: {
+      ['error' as keyof JSX.IntrinsicElements]: AlartError,
+      ['success' as keyof JSX.IntrinsicElements]: AlartSuccess,
+      ['warning' as keyof JSX.IntrinsicElements]: AlartWarning,
+      ['info' as keyof JSX.IntrinsicElements]: AlartInfo,
+    },
+  })
+
+const markPlainTextProcessor = markMdastProcessor()
+
+/**
+ * markdown to react element
+ * @param markdown markdown
+ * @returns react element
+ */
+export const markReact = async (markdown: string) => {
+  const result = await markReactProcessor().process(markdown)
+  return result.result
+}
+/**
+ * markdown to plain text
+ * @param markdown markdown
+ * @returns plain text
+ */
+export const markPlaintext = async (markdown: string) => {
+  const plainText = await markPlainTextProcessor.process(markdown)
+  return plainText.toString()
+}
