@@ -7,6 +7,7 @@ import { visit } from 'unist-util-visit'
 import rehypeKatex from 'rehype-katex'
 import rehypeHighlight from 'rehype-highlight'
 import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 import rehypeReact from 'rehype-react'
 import remarkPlaintext from 'remark-plain-text'
 import React from 'react'
@@ -61,21 +62,23 @@ const markMdastProcessor = remark()
   .use(remarkDirective)
   .use(myRemarkPlugin)
 
-const markReactProcessor = markMdastProcessor()
+const markHastProcessor = markMdastProcessor()
   .use(remarkRehype)
   .use(rehypeKatex)
   .use(rehypeHighlight, { detect: true, ignoreMissing: true })
-  .use(rehypeReact, {
-    createElement: React.createElement,
-    Fragment: React.Fragment,
-    components: {
-      ['error' as keyof JSX.IntrinsicElements]: AlartError,
-      ['success' as keyof JSX.IntrinsicElements]: AlartSuccess,
-      ['warning' as keyof JSX.IntrinsicElements]: AlartWarning,
-      ['info' as keyof JSX.IntrinsicElements]: AlartInfo,
-    },
-  })
 
+const markReactProcessor = markHastProcessor().use(rehypeReact, {
+  createElement: React.createElement,
+  Fragment: React.Fragment,
+  components: {
+    ['error' as keyof JSX.IntrinsicElements]: AlartError,
+    ['success' as keyof JSX.IntrinsicElements]: AlartSuccess,
+    ['warning' as keyof JSX.IntrinsicElements]: AlartWarning,
+    ['info' as keyof JSX.IntrinsicElements]: AlartInfo,
+  },
+})
+
+const markHtmlProcessor = markHastProcessor().use(rehypeStringify)
 const markPlainTextProcessor = markMdastProcessor().use(remarkPlaintext)
 
 /**
@@ -85,7 +88,8 @@ const markPlainTextProcessor = markMdastProcessor().use(remarkPlaintext)
  */
 export const markReact = async (markdown: string) => {
   const result = await markReactProcessor().process(markdown)
-  return result.result
+  const react = result.result
+  return react
 }
 /**
  * markdown to plain text
@@ -93,6 +97,18 @@ export const markReact = async (markdown: string) => {
  * @returns plain text
  */
 export const markPlaintext = async (markdown: string) => {
-  const plainText = await markPlainTextProcessor.process(markdown)
-  return plainText.toString()
+  const result = await markPlainTextProcessor.process(markdown)
+  const plainText = result.toString()
+  return plainText
+}
+
+/**
+ * markdown to html
+ * @param markdown markdown
+ * @returns html
+ */
+export const markHtml = async (markdown: string) => {
+  const result = await markHtmlProcessor().process(markdown)
+  const html = String(result)
+  return html
 }
