@@ -91,7 +91,7 @@ md.use(MarkdownItPlainText)
  * @param markdown markdown
  * @returns html
  */
-export const md2Html = (markdown: string) => {
+export const markHtml = (markdown: string) => {
   // TODO: MarkdownItFrontMatter: callback func
   // TODO: MarkdownItHighlightjs: css
   // TODO: MarkdownItKatex: css
@@ -105,7 +105,7 @@ export const md2Html = (markdown: string) => {
  * @param markdown markdown
  * @returns plaintext
  */
-export const md2Plain = (markdown: string) => {
+export const markPlainText = (markdown: string) => {
   md.render(markdown)
   const plain = (md as any).plainText
   return plain

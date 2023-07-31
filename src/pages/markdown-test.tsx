@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
-import { md2Html, md2Plain } from '@/lib/markdown'
+import { markHtml, markPlainText } from '@/lib/markdown/utils'
 
 /**
  * Markdown Test Page
@@ -21,11 +21,11 @@ const MarkdownTest: NextPage = () => {
       </div>
       <div className="mb-2">
         <h2>Markdown</h2>
-        <div className="prose border-2" dangerouslySetInnerHTML={{ __html: md2Html(markdown) }} />
+        <div className="prose border-2" dangerouslySetInnerHTML={{ __html: markHtml(markdown) }} />
       </div>
       <div className="mb-2">
         <h2>PlainText</h2>
-        <p className="border-2">{md2Plain(markdown)}</p>
+        <p className="border-2">{markPlainText(markdown)}</p>
       </div>
     </div>
   )
