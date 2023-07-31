@@ -40,9 +40,10 @@ const myRemarkPlugin: Plugin = () => {
       }
       if (!('name' in node)) return
       if (!(typeof node.name === 'string')) return
-      if (!alartStatus.includes(node.name)) return
+      const nodeName = node.name.toLowerCase()
+      if (!alartStatus.includes(nodeName)) return
       const newNode = node
-      newNode.data = { ...node.data, hName: node.name as AlartStatus }
+      newNode.data = { ...node.data, hName: nodeName as AlartStatus }
     }
   }
   const myRemark = (tree: Node) => {
