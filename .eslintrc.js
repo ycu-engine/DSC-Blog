@@ -15,7 +15,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  plugins: ['jsdoc'],
+  plugins: ['jsdoc', 'unused-imports'],
   rules: {
     /** eslint-plugin-jsdoc */
     'jsdoc/require-jsdoc': [
@@ -74,5 +74,11 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/require-default-props': 'off',
     'react/prop-types': 'off',
+    // unused-imports
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+    ],
   },
 }
