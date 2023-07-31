@@ -39,7 +39,7 @@ const MarkdownTest: NextPage = () => {
       </div>
       <div className="mb-2">
         <h2>Plain Text</h2>
-        <div>{plainText}</div>
+        <p>{plainText}</p>
       </div>
     </div>
   )
