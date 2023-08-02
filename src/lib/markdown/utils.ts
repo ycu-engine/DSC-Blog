@@ -20,9 +20,9 @@ import MarkdownIt from 'markdown-it'
 import MarkdownItFootnote from 'markdown-it-footnote'
 import MarkdownItFrontMatter from 'markdown-it-front-matter'
 import MarkdownItHighlightjs from 'markdown-it-highlightjs'
+import MarkdownItPlainText from 'markdown-it-plain-text'
 import MarkdownItKatex from 'markdown-it-katex'
 import MarkdownItContainer from 'markdown-it-container'
-import MarkdownItPlainText from 'markdown-it-plain-text'
 
 type Status = 'error' | 'success' | 'warning' | 'info'
 
@@ -51,10 +51,7 @@ const statusTitle: { [key in Status]: string } = {
   info: "<p class='font-bold text-blue-800'>",
 }
 
-const containerRegExp = (status: Status) => {
-  const re = new RegExp(`^${status}+(.*)$`)
-  return re
-}
+const containerRegExp = (status: Status): RegExp => new RegExp(`^${status}+(.*)$`)
 
 const containerRender = (status: Status) => (tokens: any, idx: any) => {
   const m = tokens[idx].info.trim().match(containerRegExp(status))
