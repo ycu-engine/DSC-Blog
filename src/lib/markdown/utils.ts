@@ -33,7 +33,7 @@ type Status = 'error' | 'success' | 'warning' | 'info'
 //   info: 'blue',
 // }
 
-const statusDiv: { [key in Status]: string } = {
+const statusDiv: Record<Status, string> = {
   // TODO: Emoji は Icon に変法
   error:
     "<div class='bg-red-50 border border-red-200 rounded-md text-sm text-red-700 m-2 px-2 flex' role='alert'><div class='flex-shrink-0 self-center text-xl'>❌</div><div class='ml-4'>",
@@ -44,7 +44,7 @@ const statusDiv: { [key in Status]: string } = {
   info: "<div class='bg-blue-50 border border-blue-200 rounded-md text-sm text-blue-700 m-2 px-2 flex' role='alert'><div class='flex-shrink-0 self-center text-xl'>ℹ️</div><div class='ml-4'>",
 }
 
-const statusTitle: { [key in Status]: string } = {
+const statusTitle: Record<Status, string> = {
   error: "<p class='font-bold text-red-800'>",
   success: "<p class='font-bold text-green-800'>",
   warning: "<p class='font-bold text-yellow-800'>",
