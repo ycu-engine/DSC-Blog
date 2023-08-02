@@ -10,7 +10,7 @@ const MarkdownTest: NextPage = () => {
   const [markdown, setMarkdown] = React.useState<string>('')
   const [react, setReact] = React.useState<React.ReactElement>()
   const [plainText, setPlainText] = React.useState<string>()
-  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = async (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setMarkdown(e.target.value)
     markReact(e.target.value).then((element) => setReact(element))
     markPlaintext(e.target.value).then((text) => setPlainText(text))
