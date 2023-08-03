@@ -80,5 +80,7 @@ module.exports = {
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    // sort-keys
+    'sort-keys': ['error', 'asc', { caseSensitive: true, natural: false, minKeys: 2 }],
   },
 }
