@@ -24,27 +24,22 @@ import {
 
 const myRemarkPlugin: Plugin = () => {
   const visitor = (node: Node) => {
-    if (
-      node.type === 'textDirective' ||
-      node.type === 'leafDirective' ||
-      node.type === 'containerDirective'
-    ) {
-      if (node.type === 'textDirective') {
-        const newNode = node
-        newNode.data = { ...node.data, hName: 'span' }
-        return
+    const newNode = node
+    if (node.type === 'textDirective') {
+      newNode.data = { ...node.data, hName: 'span' }
+      return
+    }
+
+    if (node.type === 'leafDirective') {
+      newNode.data = { ...node.data, hName: 'div' }
+      return
+    }
+
+    if (node.type === 'containerDirective') {
+      const nodeName = 'name' in node && typeof node.name === 'string' && node.name.toLowerCase()
+      if (nodeName && alartStatus.includes(nodeName)) {
+        newNode.data = { ...node.data, hName: nodeName as AlartStatus }
       }
-      if (node.type === 'leafDirective') {
-        const newNode = node
-        newNode.data = { ...node.data, hName: 'div' }
-        return
-      }
-      if (!('name' in node)) return
-      if (!(typeof node.name === 'string')) return
-      const nodeName = node.name.toLowerCase()
-      if (!alartStatus.includes(nodeName)) return
-      const newNode = node
-      newNode.data = { ...node.data, hName: nodeName as AlartStatus }
     }
   }
   const myRemark = (tree: Node) => {
