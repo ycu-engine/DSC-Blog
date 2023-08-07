@@ -10,10 +10,12 @@ const MarkdownTest: NextPage = () => {
   const [markdown, setMarkdown] = useState<string>('')
   const [react, setReact] = useState<ReactElement>()
   const [plainText, setPlainText] = useState<string>()
-  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = async (e) => {
     setMarkdown(e.target.value)
-    markReact(e.target.value).then((element) => setReact(element))
-    markPlaintext(e.target.value).then((text) => setPlainText(text))
+    const element = await markReact(e.target.value)
+    setReact(element)
+    const text = await markPlaintext(e.target.value)
+    setPlainText(text)
   }
   return (
     <div className="m-4 flex flex-col gap-2">
