@@ -1,5 +1,5 @@
+import { ChangeEventHandler, ReactElement, useState } from 'react'
 import { NextPage } from 'next'
-import React from 'react'
 import { markPlaintext, markReact } from '@/lib/markdown/utils'
 
 /**
@@ -7,10 +7,10 @@ import { markPlaintext, markReact } from '@/lib/markdown/utils'
  * @returns Markdown Test Page
  */
 const MarkdownTest: NextPage = () => {
-  const [markdown, setMarkdown] = React.useState<string>('')
-  const [react, setReact] = React.useState<React.ReactElement>()
-  const [plainText, setPlainText] = React.useState<string>()
-  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+  const [markdown, setMarkdown] = useState<string>('')
+  const [react, setReact] = useState<ReactElement>()
+  const [plainText, setPlainText] = useState<string>()
+  const handleChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setMarkdown(e.target.value)
     markReact(e.target.value).then((element) => setReact(element))
     markPlaintext(e.target.value).then((text) => setPlainText(text))
