@@ -13,23 +13,24 @@ export const Header = () => {
   ]
   return (
     <header className="h-10 w-full bg-orange-50">
-      <nav className="m-auto flex h-full max-w-7xl flex-row px-8">
+      <div className="m-auto flex h-full max-w-7xl flex-row px-8">
         <div className="mr-8 self-center">
           <p className="text-xl italic">DSC Blog</p>
         </div>
-        <ul className="flex flex-1 flex-row gap-4 self-end">
-          {pageLinks.map((pageLink) => (
-            <li key={pageLink.name}>
-              <Link href={pageLink.link}>{pageLink.name}</Link>
-            </li>
-          ))}
-        </ul>
-        {/* <div className="flex-1" /> */}
+        <nav className="flex-1 self-end">
+          <ul className="flex flex-row gap-4">
+            {pageLinks.map((pageLink) => (
+              <li key={pageLink.name}>
+                <Link href={pageLink.link}>{pageLink.name}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <div className="flex flex-row gap-4 self-center">
           <div>Search Icon</div>
           <div>Menu Icon</div>
         </div>
-      </nav>
+      </div>
     </header>
   )
 }
