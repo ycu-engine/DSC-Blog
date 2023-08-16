@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
+import { Menu, Search } from 'lucide-react'
 
 /**
  * Header
@@ -27,7 +28,10 @@ export const Header = () => {
           </div>
           <div className="self-center md:hidden">
             <button type="button" onClick={handleMenuClick}>
-              Menu Icon
+              <div className="flex">
+                <Menu />
+                Menu
+              </div>
             </button>
           </div>
         </div>
@@ -36,14 +40,17 @@ export const Header = () => {
             isOpen ? 'flex' : 'hidden'
           } w-full flex-col items-center gap-4 bg-orange-50 p-2 md:flex md:flex-row md:justify-between md:bg-transparent`}
         >
-          <ul className="flex flex-col gap-2 self-end md:flex-row">
+          <ul className="flex flex-col gap-2 md:flex-row md:self-end">
             {pageLinks.map((pageLink) => (
               <li key={pageLink.name}>
                 <Link href={pageLink.link}>{pageLink.name}</Link>
               </li>
             ))}
           </ul>
-          <div className="">Search Icon</div>
+          <div className="flex">
+            <Search />
+            Search
+          </div>
         </nav>
       </div>
     </header>

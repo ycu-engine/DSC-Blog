@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Menu, Search } from 'lucide-react'
 
 /**
  * Header
@@ -29,8 +30,14 @@ export const Header = () => {
           </ul>
         </nav>
         <div className="flex flex-row gap-4 self-center">
-          <div>Search Icon</div>
-          <div>Menu Icon</div>
+          <div className="flex flex-row">
+            <Search />
+            Search
+          </div>
+          <div className="flex flex-row">
+            <Menu />
+            Menu
+          </div>
         </div>
       </div>
     </header>
