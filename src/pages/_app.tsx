@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { Layout } from '@/components/ui/layout'
+import { Layout } from '@/components/layout/layout'
 
 /**
  * 全てのページはAppコンポーネントで初期化される。共通の処理やProviderを設定する
