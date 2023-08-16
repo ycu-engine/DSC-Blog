@@ -12,10 +12,12 @@ export const Header = () => {
     { name: 'Contact', link: '/' },
   ]
   return (
-    <header className="h-height-header w-full bg-orange-50">
+    <header className="h-height-header w-full bg-orange-50 p-4">
       <div className="m-auto flex h-full max-w-7xl flex-row px-8">
         <div className="mr-8 self-center">
-          <p className="text-xl italic">DSC Blog</p>
+          <Link href="/">
+            <p className="text-xl italic">DSC Blog</p>
+          </Link>
         </div>
         <nav className="flex-1 self-end">
           <ul className="flex flex-row gap-4">
