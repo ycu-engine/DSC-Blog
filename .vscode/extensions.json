@@ -9,6 +9,8 @@
     "usernamehw.errorlens",
     "oderwat.indent-rainbow",
     "yusukehirao.vscode-markuplint",
-    "yoavbls.pretty-ts-errors"
+    "yoavbls.pretty-ts-errors",
+    "github.vscode-pull-request-github",
+    "seatonjiang.gitmoji-vscode"
   ]
 }
