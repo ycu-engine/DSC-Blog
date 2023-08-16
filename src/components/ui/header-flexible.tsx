@@ -17,11 +17,13 @@ export const Header = () => {
     setOpen(!isOpen)
   }
   return (
-    <header className="w-full bg-orange-400">
-      <nav className="mx-auto h-full max-w-7xl px-5 md:flex md:items-center">
-        <div className="flex flex-row justify-between">
-          <div>
-            <Link href="/">DSC Blog</Link>
+    <header className="h-height-header w-full bg-orange-50">
+      <div className="mx-auto h-full max-w-7xl px-5 md:flex md:items-center">
+        <div className="flex h-full flex-row justify-between">
+          <div className="self-center">
+            <Link href="/">
+              <p className="text-xl italic">DSC Blog</p>
+            </Link>
           </div>
           <div className="md:hidden">
             <button type="button" onClick={handleMenuClick}>
@@ -29,7 +31,7 @@ export const Header = () => {
             </button>
           </div>
         </div>
-        <div
+        <nav
           className={`${isOpen ? 'block' : 'hidden'} w-full md:flex md:flex-row md:justify-between`}
         >
           <ul className="flex flex-col gap-2 md:flex-row md:bg-transparent">
@@ -40,8 +42,8 @@ export const Header = () => {
             ))}
           </ul>
           <div className="">Search Icon</div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   )
 }

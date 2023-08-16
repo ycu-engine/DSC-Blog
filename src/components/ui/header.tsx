@@ -12,7 +12,7 @@ export const Header = () => {
     { name: 'Contact', link: '/' },
   ]
   return (
-    <header className="h-10 w-full bg-orange-50">
+    <header className="h-height-header w-full bg-orange-50">
       <div className="m-auto flex h-full max-w-7xl flex-row px-8">
         <div className="mr-8 self-center">
           <p className="text-xl italic">DSC Blog</p>
