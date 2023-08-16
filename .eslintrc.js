@@ -15,7 +15,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
-  plugins: ['jsdoc', 'unused-imports'],
+  plugins: ['jsdoc', 'unused-imports', 'sort-keys-fix'],
   rules: {
     /** eslint-plugin-jsdoc */
     'jsdoc/require-jsdoc': [
@@ -82,5 +82,6 @@ module.exports = {
     ],
     // sort-keys
     'sort-keys': ['error', 'asc', { caseSensitive: true, natural: false, minKeys: 2 }],
+    'sort-keys-fix/sort-keys-fix': 'warn',
   },
 }
