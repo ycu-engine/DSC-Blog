@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, Search } from 'lucide-react'
+import { Menu, Search, X } from 'lucide-react'
 
 /**
  * Header
@@ -29,7 +29,7 @@ export const Header = () => {
           <div className="self-center md:hidden">
             <button type="button" onClick={handleMenuClick}>
               <div className="flex">
-                <Menu />
+                {isOpen ? <X /> : <Menu />}
                 Menu
               </div>
             </button>
