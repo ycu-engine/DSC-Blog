@@ -11,7 +11,7 @@ type HSLColor = {
 }
 
 const Color: FC<HSLColor> = ({ name, h, s, l }) => {
-  const [hsl, setHsl] = useState<Omit<HSLColor, 'name'>>({ h, s, l })
+  const [hsl, setHsl] = useState<Omit<HSLColor, 'name'>>({ h, l, s })
 
   const handleChangeHex = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const isValid = z.string().startsWith('#').length(7).safeParse(e.target.value)
@@ -38,7 +38,7 @@ const Color: FC<HSLColor> = ({ name, h, s, l }) => {
       return (max - min) / max
     })()
     const lI = max / 2.55
-    setHsl({ h: hI, s: sI, l: lI })
+    setHsl({ h: hI, l: lI, s: sI })
   }, [])
   return (
     <div className="flex w-48 flex-col gap-4">
@@ -57,7 +57,7 @@ const Color: FC<HSLColor> = ({ name, h, s, l }) => {
           min={0}
           max={360}
           onValueChange={(value) => {
-            setHsl({ h: value[0] || h, s, l })
+            setHsl({ h: value[0] || h, l, s })
           }}
         />
         {hsl.h}
@@ -69,7 +69,7 @@ const Color: FC<HSLColor> = ({ name, h, s, l }) => {
           min={0}
           max={100}
           onValueChange={(value) => {
-            setHsl({ h, s: value[0] || s, l })
+            setHsl({ h, l, s: value[0] || s })
           }}
         />
         {hsl.s}
@@ -81,7 +81,7 @@ const Color: FC<HSLColor> = ({ name, h, s, l }) => {
           min={0}
           max={100}
           onValueChange={(value) => {
-            setHsl({ h, s, l: value[0] || l })
+            setHsl({ h, l: value[0] || l, s })
           }}
         />
         {hsl.l}
@@ -99,25 +99,25 @@ const Color: FC<HSLColor> = ({ name, h, s, l }) => {
  */
 const Page: NextPage = () => {
   const colors: readonly HSLColor[] = [
-    { name: 'background', h: 0, s: 0, l: 100 },
-    { name: 'foreground', h: 222.2, s: 84, l: 4.9 },
-    { name: 'muted', h: 210, s: 40, l: 96.1 },
-    { name: 'muted-foreground', h: 215.4, s: 16.3, l: 46.9 },
-    { name: 'popover', h: 0, s: 0, l: 100 },
-    { name: 'popover-foreground', h: 222.2, s: 84, l: 4.9 },
-    { name: 'card', h: 0, s: 0, l: 100 },
-    { name: 'card-foreground', h: 222.2, s: 84, l: 4.9 },
-    { name: 'border', h: 214.3, s: 31.8, l: 91.4 },
-    { name: 'input', h: 214.3, s: 31.8, l: 91.4 },
-    { name: 'primary', h: 222.2, s: 47.4, l: 11.2 },
-    { name: 'primary-foreground', h: 210, s: 40, l: 98 },
-    { name: 'secondary', h: 210, s: 40, l: 96.1 },
-    { name: 'secondary-foreground', h: 222.2, s: 47.4, l: 11.2 },
-    { name: 'accent', h: 210, s: 40, l: 96.1 },
-    { name: 'accent-foreground', h: 222.2, s: 47.4, l: 11.2 },
-    { name: 'destructive', h: 0, s: 84.2, l: 60.2 },
-    { name: 'destructive-foreground', h: 210, s: 40, l: 98 },
-    { name: 'ring', h: 215, s: 20.2, l: 65.1 },
+    { h: 0, l: 100, name: 'background', s: 0 },
+    { h: 222.2, l: 4.9, name: 'foreground', s: 84 },
+    { h: 210, l: 96.1, name: 'muted', s: 40 },
+    { h: 215.4, l: 46.9, name: 'muted-foreground', s: 16.3 },
+    { h: 0, l: 100, name: 'popover', s: 0 },
+    { h: 222.2, l: 4.9, name: 'popover-foreground', s: 84 },
+    { h: 0, l: 100, name: 'card', s: 0 },
+    { h: 222.2, l: 4.9, name: 'card-foreground', s: 84 },
+    { h: 214.3, l: 91.4, name: 'border', s: 31.8 },
+    { h: 214.3, l: 91.4, name: 'input', s: 31.8 },
+    { h: 222.2, l: 11.2, name: 'primary', s: 47.4 },
+    { h: 210, l: 98, name: 'primary-foreground', s: 40 },
+    { h: 210, l: 96.1, name: 'secondary', s: 40 },
+    { h: 222.2, l: 11.2, name: 'secondary-foreground', s: 47.4 },
+    { h: 210, l: 96.1, name: 'accent', s: 40 },
+    { h: 222.2, l: 11.2, name: 'accent-foreground', s: 47.4 },
+    { h: 0, l: 60.2, name: 'destructive', s: 84.2 },
+    { h: 210, l: 98, name: 'destructive-foreground', s: 40 },
+    { h: 215, l: 65.1, name: 'ring', s: 20.2 },
   ] as const
 
   return (
