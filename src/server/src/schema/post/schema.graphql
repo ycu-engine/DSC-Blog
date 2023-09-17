@@ -4,7 +4,3 @@ type Post implements Node {
   body: String!
   author: MemberUser!
 }
-
-extend type Query {
-  samplePosts: [Post!]!
-}

@@ -1,10 +1,7 @@
-type Query
-type Mutation
+type Query {
+  hello: String!
+}
 
 interface Node {
   id: ID!
-}
-
-extend type Query {
-  hello: String!
 }

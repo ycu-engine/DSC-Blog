@@ -29,10 +29,6 @@ export type MemberUser = Node &
     lastName: Scalars['String']['output']
   }
 
-export type Mutation = {
-  __typename?: 'Mutation'
-}
-
 export type Node = {
   id: Scalars['ID']['output']
 }
@@ -58,7 +54,6 @@ export type Post = Node & {
 export type Query = {
   __typename?: 'Query'
   hello: Scalars['String']['output']
-  samplePosts: Array<Post>
 }
 
 export type User = {
@@ -165,7 +160,6 @@ export type ResolversTypes = {
   MemberUser: ResolverTypeWrapper<MemberUser>
   String: ResolverTypeWrapper<Scalars['String']['output']>
   ID: ResolverTypeWrapper<Scalars['ID']['output']>
-  Mutation: ResolverTypeWrapper<{}>
   Node: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Node']>
   NormalUser: ResolverTypeWrapper<NormalUser>
   Post: ResolverTypeWrapper<Post>
@@ -179,7 +173,6 @@ export type ResolversParentTypes = {
   MemberUser: MemberUser
   String: Scalars['String']['output']
   ID: Scalars['ID']['output']
-  Mutation: {}
   Node: ResolversInterfaceTypes<ResolversParentTypes>['Node']
   NormalUser: NormalUser
   Post: Post
@@ -199,11 +192,6 @@ export type MemberUserResolvers<
   lastName?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
-
-export type MutationResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation'],
-> = {}
 
 export type NodeResolvers<
   ContextType = any,
@@ -241,7 +229,6 @@ export type QueryResolvers<
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
 > = {
   hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  samplePosts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>
 }
 
 export type UserResolvers<
@@ -258,7 +245,6 @@ export type UserResolvers<
 
 export type Resolvers<ContextType = any> = {
   MemberUser?: MemberUserResolvers<ContextType>
-  Mutation?: MutationResolvers<ContextType>
   Node?: NodeResolvers<ContextType>
   NormalUser?: NormalUserResolvers<ContextType>
   Post?: PostResolvers<ContextType>
