@@ -1,0 +1,21 @@
+type Post implements Node {
+  id: ID!
+  title: String!
+  body: String!
+  author: User!
+}
+
+type PostConnection {
+  edges: [PostEdge]
+  nodes: [Post]
+  pageInfo: PageInfo!
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+extend type Query {
+  posts(first: Int, after: String, last: Int, before: String): PostConnection!
+}

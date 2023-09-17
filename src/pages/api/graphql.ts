@@ -1,5 +1,6 @@
-import { createSchema, createYoga } from 'graphql-yoga'
+import { createYoga } from 'graphql-yoga'
 import { NextApiRequest, NextApiResponse, NextConfig } from 'next'
+import { schema } from '@/server/src/yoga'
 
 /**
  * ボディパーサーを無効化する
@@ -9,19 +10,6 @@ export const config: NextConfig = {
     bodyParser: false,
   },
 }
-
-const schema = createSchema({
-  resolvers: {
-    Query: {
-      hello: () => 'world',
-    },
-  },
-  typeDefs: /* GraphQL */ `
-    type Query {
-      hello: String!
-    }
-  `,
-})
 
 export default createYoga<{
   req: NextApiRequest

@@ -20,7 +20,8 @@
     "lint:fix": "eslint --fix .",
     "lint:check": "eslint .",
     "type-check": "tsc --noEmit",
-    "shadcn-add": "npx shadcn-ui@latest add"
+    "shadcn-add": "npx shadcn-ui@latest add",
+    "gqlgen:server": "graphql-codegen -c src/server/codegen.ts"
   },
   "dependencies": {
     "@radix-ui/react-slider": "^1.1.2",
@@ -63,6 +64,8 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@eddeee888/gcg-typescript-resolver-files": "^0.7.0",
+    "@graphql-codegen/cli": "^5.0.0",
     "@tsconfig/strictest": "^2.0.1",
     "@types/unist": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
