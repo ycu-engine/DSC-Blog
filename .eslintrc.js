@@ -22,7 +22,6 @@ module.exports = {
       'error',
       {
         publicOnly: true,
-
         require: {
           ArrowFunctionExpression: true,
           ClassDeclaration: true,
@@ -84,4 +83,13 @@ module.exports = {
     'sort-keys': ['error', 'asc', { caseSensitive: true, natural: false, minKeys: 2 }],
     'sort-keys-fix/sort-keys-fix': 'warn',
   },
+  // require-jsdocはsrc/server/src/schemas/**/resolvers/*.tsで無効化
+  overrides: [
+    {
+      files: ['src/server/src/schema/**/resolvers/**/*.ts'],
+      rules: {
+        'jsdoc/require-jsdoc': 'off',
+      },
+    },
+  ],
 }

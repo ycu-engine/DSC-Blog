@@ -1,0 +1,23 @@
+interface User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  email: String!
+}
+
+type MemberUser implements Node & User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  email: String!
+}
+
+type NormalUser implements Node & User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  email: String!
+}
