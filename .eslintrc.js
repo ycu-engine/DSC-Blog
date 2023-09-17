@@ -74,6 +74,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/prop-types': 'off',
     // unused-imports
+    '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
       'warn',
