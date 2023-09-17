@@ -20,7 +20,8 @@ import {
   AlartSuccess,
   AlartWarning,
   alartStatus,
-} from '@/components/ui/alart'
+} from '@/components/ui/alartNotShadcn'
+import { Alert } from '@/components/ui/Alert/Alert'
 
 const myRemarkPlugin: Plugin = () => {
   const visitor = (node: Node) => {
@@ -66,10 +67,18 @@ const markReactProcessor = markHastProcessor().use(rehypeReact, {
   createElement: React.createElement,
   Fragment: React.Fragment,
   components: {
-    ['error' as keyof JSX.IntrinsicElements]: AlartError,
-    ['success' as keyof JSX.IntrinsicElements]: AlartSuccess,
-    ['warning' as keyof JSX.IntrinsicElements]: AlartWarning,
-    ['info' as keyof JSX.IntrinsicElements]: AlartInfo,
+    ['error' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
+      <Alert variant="error" children={children} />
+    ),
+    ['success' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
+      <Alert variant="success" children={children} />
+    ),
+    ['warning' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
+      <Alert variant="warning" children={children} />
+    ),
+    ['info' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
+      <Alert variant="info" children={children} />
+    ),
   },
 })
 
