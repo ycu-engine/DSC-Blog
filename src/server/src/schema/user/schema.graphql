@@ -1,4 +1,4 @@
-interface User implements Node {
+interface User {
   id: ID!
   firstName: String!
   lastName: String!
@@ -6,7 +6,7 @@ interface User implements Node {
   email: String!
 }
 
-type MemberUser implements User {
+type MemberUser implements Node & User {
   id: ID!
   firstName: String!
   lastName: String!
@@ -14,7 +14,7 @@ type MemberUser implements User {
   email: String!
 }
 
-type NormalUser implements User {
+type NormalUser implements Node & User {
   id: ID!
   firstName: String!
   lastName: String!

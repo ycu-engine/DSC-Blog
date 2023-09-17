@@ -1,0 +1,10 @@
+type Post implements Node {
+  id: ID!
+  title: String!
+  body: String!
+  author: MemberUser!
+}
+
+extend type Query {
+  samplePosts: [Post!]!
+}

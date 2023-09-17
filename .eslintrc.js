@@ -86,7 +86,7 @@ module.exports = {
   // require-jsdocはsrc/server/src/schemas/**/resolvers/*.tsで無効化
   overrides: [
     {
-      files: ['src/server/src/schemas/**/resolvers/**/*.ts'],
+      files: ['src/server/src/schema/**/resolvers/**/*.ts'],
       rules: {
         'jsdoc/require-jsdoc': 'off',
       },

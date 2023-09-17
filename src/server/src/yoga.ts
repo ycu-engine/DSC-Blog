@@ -1,6 +1,6 @@
 import { createSchema } from 'graphql-yoga'
-import { resolvers } from './schemas/resolvers.generated'
-import { typeDefs } from './schemas/typeDefs.generated'
+import { resolvers } from './schema/resolvers.generated'
+import { typeDefs } from './schema/typeDefs.generated'
 
 /**
  * GraphQLのスキーマ

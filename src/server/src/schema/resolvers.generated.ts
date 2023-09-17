@@ -2,18 +2,13 @@
 import type { Resolvers } from './types.generated'
 import { MemberUser } from './user/resolvers/MemberUser'
 import { NormalUser } from './user/resolvers/NormalUser'
-import { PageInfo } from './base/resolvers/PageInfo'
 import { Post } from './post/resolvers/Post'
-import { PostConnection } from './post/resolvers/PostConnection'
-import { PostEdge } from './post/resolvers/PostEdge'
-import { posts as Query_posts } from './post/resolvers/Query/posts'
+import { hello as Query_hello } from './base/resolvers/Query/hello'
+import { samplePosts as Query_samplePosts } from './post/resolvers/Query/samplePosts'
 export const resolvers: Resolvers = {
-  Query: { posts: Query_posts },
+  Query: { hello: Query_hello, samplePosts: Query_samplePosts },
 
   MemberUser: MemberUser,
   NormalUser: NormalUser,
-  PageInfo: PageInfo,
   Post: Post,
-  PostConnection: PostConnection,
-  PostEdge: PostEdge,
 }

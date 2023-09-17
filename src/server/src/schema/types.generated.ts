@@ -19,14 +19,15 @@ export type Scalars = {
   Float: { input: number; output: number }
 }
 
-export type MemberUser = User & {
-  __typename?: 'MemberUser'
-  email: Scalars['String']['output']
-  firstName: Scalars['String']['output']
-  fullName: Scalars['String']['output']
-  id: Scalars['ID']['output']
-  lastName: Scalars['String']['output']
-}
+export type MemberUser = Node &
+  User & {
+    __typename?: 'MemberUser'
+    email: Scalars['String']['output']
+    firstName: Scalars['String']['output']
+    fullName: Scalars['String']['output']
+    id: Scalars['ID']['output']
+    lastName: Scalars['String']['output']
+  }
 
 export type Mutation = {
   __typename?: 'Mutation'
@@ -36,54 +37,28 @@ export type Node = {
   id: Scalars['ID']['output']
 }
 
-export type NormalUser = User & {
-  __typename?: 'NormalUser'
-  email: Scalars['String']['output']
-  firstName: Scalars['String']['output']
-  fullName: Scalars['String']['output']
-  id: Scalars['ID']['output']
-  lastName: Scalars['String']['output']
-}
-
-export type PageInfo = {
-  __typename?: 'PageInfo'
-  endCursor?: Maybe<Scalars['String']['output']>
-  hasNextPage: Scalars['Boolean']['output']
-  hasPreviousPage: Scalars['Boolean']['output']
-  startCursor?: Maybe<Scalars['String']['output']>
-}
+export type NormalUser = Node &
+  User & {
+    __typename?: 'NormalUser'
+    email: Scalars['String']['output']
+    firstName: Scalars['String']['output']
+    fullName: Scalars['String']['output']
+    id: Scalars['ID']['output']
+    lastName: Scalars['String']['output']
+  }
 
 export type Post = Node & {
   __typename?: 'Post'
-  author: User
+  author: MemberUser
   body: Scalars['String']['output']
   id: Scalars['ID']['output']
   title: Scalars['String']['output']
 }
 
-export type PostConnection = {
-  __typename?: 'PostConnection'
-  edges?: Maybe<Array<Maybe<PostEdge>>>
-  nodes?: Maybe<Array<Maybe<Post>>>
-  pageInfo: PageInfo
-}
-
-export type PostEdge = {
-  __typename?: 'PostEdge'
-  cursor: Scalars['String']['output']
-  node: Post
-}
-
 export type Query = {
   __typename?: 'Query'
-  posts: PostConnection
-}
-
-export type QuerypostsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>
-  before?: InputMaybe<Scalars['String']['input']>
-  first?: InputMaybe<Scalars['Int']['input']>
-  last?: InputMaybe<Scalars['Int']['input']>
+  hello: Scalars['String']['output']
+  samplePosts: Array<Post>
 }
 
 export type User = {
@@ -178,7 +153,10 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping of interface types */
 export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
-  Node: Post & { __typename: 'Post' }
+  Node:
+    | (MemberUser & { __typename: 'MemberUser' })
+    | (NormalUser & { __typename: 'NormalUser' })
+    | (Post & { __typename: 'Post' })
   User: (MemberUser & { __typename: 'MemberUser' }) | (NormalUser & { __typename: 'NormalUser' })
 }
 
@@ -190,14 +168,10 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>
   Node: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Node']>
   NormalUser: ResolverTypeWrapper<NormalUser>
-  PageInfo: ResolverTypeWrapper<PageInfo>
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>
   Post: ResolverTypeWrapper<Post>
-  PostConnection: ResolverTypeWrapper<PostConnection>
-  PostEdge: ResolverTypeWrapper<PostEdge>
   Query: ResolverTypeWrapper<{}>
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>
   User: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['User']>
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -208,14 +182,10 @@ export type ResolversParentTypes = {
   Mutation: {}
   Node: ResolversInterfaceTypes<ResolversParentTypes>['Node']
   NormalUser: NormalUser
-  PageInfo: PageInfo
-  Boolean: Scalars['Boolean']['output']
   Post: Post
-  PostConnection: PostConnection
-  PostEdge: PostEdge
   Query: {}
-  Int: Scalars['Int']['output']
   User: ResolversInterfaceTypes<ResolversParentTypes>['User']
+  Boolean: Scalars['Boolean']['output']
 }
 
 export type MemberUserResolvers<
@@ -239,7 +209,7 @@ export type NodeResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node'],
 > = {
-  __resolveType?: TypeResolveFn<'Post', ParentType, ContextType>
+  __resolveType?: TypeResolveFn<'MemberUser' | 'NormalUser' | 'Post', ParentType, ContextType>
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
 }
 
@@ -255,45 +225,14 @@ export type NormalUserResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
-export type PageInfoResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo'],
-> = {
-  endCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
-  hasPreviousPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
-  startCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}
-
 export type PostResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post'],
 > = {
-  author?: Resolver<ResolversTypes['User'], ParentType, ContextType>
+  author?: Resolver<ResolversTypes['MemberUser'], ParentType, ContextType>
   body?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}
-
-export type PostConnectionResolvers<
-  ContextType = any,
-  ParentType extends
-    ResolversParentTypes['PostConnection'] = ResolversParentTypes['PostConnection'],
-> = {
-  edges?: Resolver<Maybe<Array<Maybe<ResolversTypes['PostEdge']>>>, ParentType, ContextType>
-  nodes?: Resolver<Maybe<Array<Maybe<ResolversTypes['Post']>>>, ParentType, ContextType>
-  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
-}
-
-export type PostEdgeResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['PostEdge'] = ResolversParentTypes['PostEdge'],
-> = {
-  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
@@ -301,12 +240,8 @@ export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query'],
 > = {
-  posts?: Resolver<
-    ResolversTypes['PostConnection'],
-    ParentType,
-    ContextType,
-    Partial<QuerypostsArgs>
-  >
+  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  samplePosts?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>
 }
 
 export type UserResolvers<
@@ -326,10 +261,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>
   Node?: NodeResolvers<ContextType>
   NormalUser?: NormalUserResolvers<ContextType>
-  PageInfo?: PageInfoResolvers<ContextType>
   Post?: PostResolvers<ContextType>
-  PostConnection?: PostConnectionResolvers<ContextType>
-  PostEdge?: PostEdgeResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
   User?: UserResolvers<ContextType>
 }
