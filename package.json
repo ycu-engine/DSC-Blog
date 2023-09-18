@@ -21,9 +21,13 @@
     "lint:check": "eslint .",
     "type-check": "tsc --noEmit",
     "shadcn-add": "npx shadcn-ui@latest add",
-    "gqlgen:server": "graphql-codegen -c src/server/codegen.ts"
+    "gqlgen:server": "graphql-codegen -c src/server/codegen.ts",
+    "generate": "prisma generate --schema src/server/prisma/schema.prisma",
+    "migrate": "prisma migrate dev --schema src/server/prisma/schema.prisma",
+    "studio": "prisma studio --schema src/server/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "5.3.1",
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@t3-oss/env-nextjs": "^0.6.1",
@@ -81,6 +85,7 @@
     "markuplint": "^3.12.0",
     "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.4.1",
+    "prisma": "^5.3.1",
     "ts-node": "^10.9.1"
   },
   "volta": {
