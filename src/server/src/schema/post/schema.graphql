@@ -5,6 +5,18 @@ type Post implements Node {
   author: MemberUser!
 }
 
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  nodes: [Post!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
 extend type Mutation {
   createPost(input: CreatePostInput!): CreatePostResult!
 }
@@ -19,3 +31,9 @@ input CreatePostInput {
   title: String!
   content: String!
 }
+
+extend type Query {
+  posts(first: Int, after: String, last: Int, before: String): PostsResult!
+}
+
+union PostsResult = PostConnection | AuthenticationError

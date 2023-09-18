@@ -31,6 +31,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/server/prisma/seed.ts"
   },
   "dependencies": {
+    "@devoxa/prisma-relay-cursor-connection": "^3.1.0",
     "@prisma/client": "5.3.1",
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",

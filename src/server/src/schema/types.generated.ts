@@ -73,6 +73,14 @@ export type NormalUser = Node & User & {
   lastName: Scalars['String']['output'];
 };
 
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+  hasPreviousPage: Scalars['Boolean']['output'];
+  startCursor?: Maybe<Scalars['String']['output']>;
+};
+
 export type Post = Node & {
   __typename?: 'Post';
   author: MemberUser;
@@ -81,9 +89,34 @@ export type Post = Node & {
   title: Scalars['String']['output'];
 };
 
+export type PostConnection = {
+  __typename?: 'PostConnection';
+  edges: Array<PostEdge>;
+  nodes: Array<Post>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type PostEdge = {
+  __typename?: 'PostEdge';
+  cursor: Scalars['String']['output'];
+  node: Post;
+};
+
+export type PostsResult = AuthenticationError | PostConnection;
+
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String']['output'];
+  posts: PostsResult;
+};
+
+
+export type QuerypostsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type User = {
@@ -164,6 +197,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping of union types */
 export type ResolversUnionTypes<RefType extends Record<string, unknown>> = {
   CreatePostResult: ( AuthenticationError & { __typename: 'AuthenticationError' } ) | ( Omit<CreatePostSuccess, 'post'> & { post: RefType['Post'] } & { __typename: 'CreatePostSuccess' } );
+  PostsResult: ( AuthenticationError & { __typename: 'AuthenticationError' } ) | ( Omit<PostConnection, 'edges' | 'nodes'> & { edges: Array<RefType['PostEdge']>, nodes: Array<RefType['Post']> } & { __typename: 'PostConnection' } );
 };
 
 /** Mapping of interface types */
@@ -186,10 +220,15 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Node: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Node']>;
   NormalUser: ResolverTypeWrapper<NormalUserMapper>;
+  PageInfo: ResolverTypeWrapper<PageInfo>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Post: ResolverTypeWrapper<PostMapper>;
+  PostConnection: ResolverTypeWrapper<Omit<PostConnection, 'edges' | 'nodes'> & { edges: Array<ResolversTypes['PostEdge']>, nodes: Array<ResolversTypes['Post']> }>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  PostEdge: ResolverTypeWrapper<Omit<PostEdge, 'node'> & { node: ResolversTypes['Post'] }>;
+  PostsResult: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['PostsResult']>;
   Query: ResolverTypeWrapper<{}>;
   User: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['User']>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -205,10 +244,15 @@ export type ResolversParentTypes = {
   Mutation: {};
   Node: ResolversInterfaceTypes<ResolversParentTypes>['Node'];
   NormalUser: NormalUserMapper;
+  PageInfo: PageInfo;
+  Boolean: Scalars['Boolean']['output'];
   Post: PostMapper;
+  PostConnection: Omit<PostConnection, 'edges' | 'nodes'> & { edges: Array<ResolversParentTypes['PostEdge']>, nodes: Array<ResolversParentTypes['Post']> };
+  Int: Scalars['Int']['output'];
+  PostEdge: Omit<PostEdge, 'node'> & { node: ResolversParentTypes['Post'] };
+  PostsResult: ResolversUnionTypes<ResolversParentTypes>['PostsResult'];
   Query: {};
   User: ResolversInterfaceTypes<ResolversParentTypes>['User'];
-  Boolean: Scalars['Boolean']['output'];
 };
 
 export type AuthenticationErrorResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['AuthenticationError'] = ResolversParentTypes['AuthenticationError']> = {
@@ -257,6 +301,14 @@ export type NormalUserResolvers<ContextType = GraphQLContext, ParentType extends
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type PageInfoResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
+  endCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  hasPreviousPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  startCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type PostResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Post'] = ResolversParentTypes['Post']> = {
   author?: Resolver<ResolversTypes['MemberUser'], ParentType, ContextType>;
   content?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -265,8 +317,27 @@ export type PostResolvers<ContextType = GraphQLContext, ParentType extends Resol
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type PostConnectionResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['PostConnection'] = ResolversParentTypes['PostConnection']> = {
+  edges?: Resolver<Array<ResolversTypes['PostEdge']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['Post']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PostEdgeResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['PostEdge'] = ResolversParentTypes['PostEdge']> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Post'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type PostsResultResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['PostsResult'] = ResolversParentTypes['PostsResult']> = {
+  __resolveType?: TypeResolveFn<'AuthenticationError' | 'PostConnection', ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  posts?: Resolver<ResolversTypes['PostsResult'], ParentType, ContextType, Partial<QuerypostsArgs>>;
 };
 
 export type UserResolvers<ContextType = GraphQLContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -287,7 +358,11 @@ export type Resolvers<ContextType = GraphQLContext> = {
   Mutation?: MutationResolvers<ContextType>;
   Node?: NodeResolvers<ContextType>;
   NormalUser?: NormalUserResolvers<ContextType>;
+  PageInfo?: PageInfoResolvers<ContextType>;
   Post?: PostResolvers<ContextType>;
+  PostConnection?: PostConnectionResolvers<ContextType>;
+  PostEdge?: PostEdgeResolvers<ContextType>;
+  PostsResult?: PostsResultResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };

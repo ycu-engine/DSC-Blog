@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@devoxa/prisma-relay-cursor-connection':
+    specifier: ^3.1.0
+    version: 3.1.0(@prisma/client@5.3.1)
   '@prisma/client':
     specifier: 5.3.1
     version: 5.3.1(prisma@5.3.1)
@@ -798,6 +801,15 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
+
+  /@devoxa/prisma-relay-cursor-connection@3.1.0(@prisma/client@5.3.1):
+    resolution: {integrity: sha512-JI+YJ35lenTbB2oO3YzdeSoAFThtJXMHFdJ0mrrVlJefGfycby3LR1sXV1qKgY4fL4wcGy6+Bz+tXC5zz50Ojw==}
+    peerDependencies:
+      '@prisma/client': ^2.0.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      '@prisma/client': 5.3.1(prisma@5.3.1)
+      graphql-fields: 2.0.3
+    dev: false
 
   /@eddeee888/gcg-server-config@0.1.0(graphql@16.8.0):
     resolution: {integrity: sha512-ZM4Cfem3FWelpz5sdCfJ+fZTCyY1WDdcT6K5GZ/UZpr7JjMApSMKnf+o9VMT2T+BB91Hffr0AH8W4oLEWUEWuw==}
@@ -4572,6 +4584,10 @@ packages:
       - encoding
       - utf-8-validate
     dev: true
+
+  /graphql-fields@2.0.3:
+    resolution: {integrity: sha512-x3VE5lUcR4XCOxPIqaO4CE+bTK8u6gVouOdpQX9+EKHr+scqtK5Pp/l8nIGqIpN1TUlkKE6jDCCycm/WtLRAwA==}
+    dev: false
 
   /graphql-request@6.1.0(graphql@16.8.0):
     resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}
