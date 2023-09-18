@@ -1,6 +1,7 @@
 import { createYoga } from 'graphql-yoga'
 import { NextApiRequest, NextApiResponse, NextConfig } from 'next'
 import { schema } from '@/server/src/yoga'
+import { env } from '@/env.mjs'
 
 /**
  * ボディパーサーを無効化する
@@ -15,6 +16,12 @@ export default createYoga<{
   req: NextApiRequest
   res: NextApiResponse
 }>({
+  // TODO: 本番環境ではCORSを許可するオリジンを指定する
+  cors: {
+    credentials: true,
+    origin: env.NODE_ENV === 'production' ? 'https://example.com' : '*',
+  },
   graphqlEndpoint: '/api/graphql',
+
   schema: schema as any,
 })
