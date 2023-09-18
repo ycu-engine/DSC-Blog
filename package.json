@@ -12,6 +12,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:db": "docker compose up -d && pnpm run prisma:generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
