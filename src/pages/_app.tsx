@@ -1,6 +1,8 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { ApolloProvider } from '@apollo/client'
 import { Layout } from '@/components/layout/layout'
+import { client } from '@/lib/apollo/cllient'
 
 /**
  * 全てのページはAppコンポーネントで初期化される。共通の処理やProviderを設定する
@@ -8,8 +10,10 @@ import { Layout } from '@/components/layout/layout'
  */
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ApolloProvider client={client}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ApolloProvider>
   )
 }

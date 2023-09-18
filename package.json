@@ -23,6 +23,7 @@
     "type-check": "tsc --noEmit",
     "shadcn-add": "npx shadcn-ui@latest add",
     "gqlgen:server": "graphql-codegen -c src/server/codegen.ts",
+    "gqlgen:client": "graphql-codegen -c src/codegen.ts",
     "prisma:generate": "prisma generate --schema src/server/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema src/server/prisma/schema.prisma",
     "prisma:studio": "prisma studio --schema src/server/prisma/schema.prisma",
@@ -32,6 +33,7 @@
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/server/prisma/seed.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.3",
     "@devoxa/prisma-relay-cursor-connection": "^3.1.0",
     "@prisma/client": "5.3.1",
     "@radix-ui/react-slider": "^1.1.2",
@@ -77,6 +79,7 @@
   "devDependencies": {
     "@eddeee888/gcg-typescript-resolver-files": "^0.7.0",
     "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
     "@tsconfig/strictest": "^2.0.1",
     "@types/unist": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

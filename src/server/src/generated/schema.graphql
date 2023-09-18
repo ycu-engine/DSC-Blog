@@ -1,0 +1,83 @@
+type AuthenticationError implements Error {
+  message: String!
+}
+
+input CreatePostInput {
+  content: String!
+  title: String!
+}
+
+union CreatePostResult = AuthenticationError | CreatePostSuccess
+
+type CreatePostSuccess {
+  post: Post!
+}
+
+interface Error {
+  message: String!
+}
+
+type MemberUser implements Node & User {
+  email: String!
+  firstName: String!
+  fullName: String!
+  id: ID!
+  lastName: String!
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResult!
+}
+
+interface Node {
+  id: ID!
+}
+
+type NormalUser implements Node & User {
+  email: String!
+  firstName: String!
+  fullName: String!
+  id: ID!
+  lastName: String!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Post implements Node {
+  author: MemberUser!
+  content: String!
+  id: ID!
+  title: String!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  nodes: [Post!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
+union PostsResult = AuthenticationError | PostConnection
+
+type Query {
+  hello: String!
+  posts(after: String, before: String, first: Int, last: Int): PostsResult!
+}
+
+interface User {
+  email: String!
+  firstName: String!
+  fullName: String!
+  id: ID!
+  lastName: String!
+}

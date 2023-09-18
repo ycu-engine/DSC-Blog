@@ -81,6 +81,7 @@ module.exports = {
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
     'react/destructuring-assignment': 'off',
+    'no-underscore-dangle': 'off',
     // sort-keys
     'sort-keys': ['error', 'asc', { caseSensitive: true, natural: false, minKeys: 2 }],
     'sort-keys-fix/sort-keys-fix': 'warn',
