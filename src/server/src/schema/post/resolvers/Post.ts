@@ -1,5 +1,10 @@
 import type { PostResolvers } from '../../types.generated'
 
 export const Post: PostResolvers = {
-  /* Implement Post resolver logic here */
+  author: (parent, _args, { prisma }) =>
+    prisma.user.findUniqueOrThrow({
+      where: {
+        id: parent.authorId,
+      },
+    }),
 }

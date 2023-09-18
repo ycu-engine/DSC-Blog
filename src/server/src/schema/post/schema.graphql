@@ -1,6 +1,21 @@
 type Post implements Node {
   id: ID!
   title: String!
-  body: String!
+  content: String!
   author: MemberUser!
+}
+
+extend type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResult!
+}
+
+union CreatePostResult = CreatePostSuccess | AuthenticationError
+
+type CreatePostSuccess {
+  post: Post!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
 }

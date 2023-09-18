@@ -11,6 +11,9 @@ const config: CodegenConfig = {
   generates: {
     [`${PATH_TO_SERVER_DIR}/src/schema`]: defineConfig({
       tsConfigFilePath: '/tsconfig.json',
+      typesPluginsConfig: {
+        contextType: '../context#GraphQLContext',
+      },
     }),
   },
   hooks: {
