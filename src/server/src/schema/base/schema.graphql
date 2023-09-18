@@ -2,6 +2,23 @@ type Query {
   hello: String!
 }
 
+type Mutation
+
 interface Node {
   id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+interface Error {
+  message: String!
+}
+
+type AuthenticationError implements Error {
+  message: String!
 }

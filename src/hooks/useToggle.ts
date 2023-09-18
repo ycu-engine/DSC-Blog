@@ -16,5 +16,5 @@ export const useToggle = (
   const onClose = () => setIsOpen(false)
   const onToggle = () => setIsOpen(!isOpen)
 
-  return { isOpen, onOpen, onClose, onToggle }
+  return { isOpen, onClose, onOpen, onToggle }
 }

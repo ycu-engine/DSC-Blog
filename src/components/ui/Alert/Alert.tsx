@@ -3,9 +3,9 @@ import { Alert as AlertContainer, AlertDescription, AlertTitle, AlertVariants } 
 
 const variantTitleMapper: Record<AlertVariants, string> = {
   error: 'ERROR!',
+  info: 'Info!',
   success: 'Success!',
   warning: 'Warning!',
-  info: 'Info!',
 }
 
 type AlertProps = {
@@ -15,9 +15,11 @@ type AlertProps = {
   titleProps?: Parameters<typeof AlertTitle>[0]
   descriptionProps?: Parameters<typeof AlertDescription>[0]
 }
+/**
+ * Alert component
+ */
 export const Alert: FC<AlertProps> = (props) => {
   const { children: description, variant } = props
-
   const alertTitle = variantTitleMapper[variant]
 
   return (

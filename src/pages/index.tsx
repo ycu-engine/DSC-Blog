@@ -42,49 +42,49 @@ const Home: NextPage<PageProps> = ({ posts }) => (
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
   const samplePosts: Post[] = [
     {
-      id: '1',
       author: {
+        email: 'testHanako@ycu.com',
         id: '1',
         name: 'テスト花子',
-        email: 'testHanako@ycu.com',
       },
+      content: '記事の内容',
+      coverImageUri: 'https://source.unsplash.com/random/800x800',
+      createdAt: '2021-01-01T00:00:00.000Z',
+      id: '1',
+      isPublic: true,
       title:
         'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      content: '記事の内容',
-      createdAt: '2021-01-01T00:00:00.000Z',
       updatedAt: '2021-01-01T00:00:00.000Z',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      isPublic: true,
     },
     {
-      id: '2',
       author: {
+        email: 'testTarou@ycu.com',
         id: '2',
         name: 'テスト太郎',
-        email: 'testTarou@ycu.com',
       },
+      content: '記事の内容',
+      coverImageUri: 'https://source.unsplash.com/random/800x800',
+      createdAt: '2021-01-01T00:00:00.000Z',
+      id: '2',
+      isPublic: true,
       title:
         'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      content: '記事の内容',
-      createdAt: '2021-01-01T00:00:00.000Z',
       updatedAt: '2021-01-01T00:00:00.000Z',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      isPublic: true,
     },
     {
-      id: '3',
       author: {
+        email: 'ds@ycu.com',
         id: '3',
         name: 'テスト三郎',
-        email: 'ds@ycu.com',
       },
+      content: '記事の内容',
+      coverImageUri: 'https://source.unsplash.com/random/800x800',
+      createdAt: '2021-01-01T00:00:00.000Z',
+      id: '3',
+      isPublic: true,
       title:
         'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      content: '記事の内容',
-      createdAt: '2021-01-01T00:00:00.000Z',
       updatedAt: '2021-01-01T00:00:00.000Z',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      isPublic: true,
     },
   ]
   return {

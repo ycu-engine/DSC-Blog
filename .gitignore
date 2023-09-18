@@ -3,3 +3,5 @@
 next-env.d.ts
 .DS_Store
 src/server/src/schema/*.generated.ts
+.env
+tsconfig.tsbuildinfo

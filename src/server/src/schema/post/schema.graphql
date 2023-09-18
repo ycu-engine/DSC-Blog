@@ -1,6 +1,39 @@
 type Post implements Node {
   id: ID!
   title: String!
-  body: String!
+  content: String!
   author: MemberUser!
 }
+
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  nodes: [Post!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+extend type Mutation {
+  createPost(input: CreatePostInput!): CreatePostResult!
+}
+
+union CreatePostResult = CreatePostSuccess | AuthenticationError
+
+type CreatePostSuccess {
+  post: Post!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+
+extend type Query {
+  posts(first: Int, after: String, last: Int, before: String): PostsResult!
+}
+
+union PostsResult = PostConnection | AuthenticationError

@@ -13,14 +13,7 @@ import remarkPlaintext from 'remark-plain-text'
 import React from 'react'
 import type { Plugin } from 'unified'
 import type { Node } from 'mdast'
-import {
-  AlartError,
-  AlartInfo,
-  AlartStatus,
-  AlartSuccess,
-  AlartWarning,
-  alartStatus,
-} from '@/components/ui/alartNotShadcn'
+import { AlartStatus, alartStatus } from '@/components/ui/alartNotShadcn'
 import { Alert } from '@/components/ui/Alert/Alert'
 
 const myRemarkPlugin: Plugin = () => {
@@ -64,22 +57,22 @@ const markHastProcessor = markMdastProcessor()
   .use(rehypeHighlight, { detect: true, ignoreMissing: true })
 
 const markReactProcessor = markHastProcessor().use(rehypeReact, {
-  createElement: React.createElement,
   Fragment: React.Fragment,
   components: {
     ['error' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
-      <Alert variant="error" children={children} />
+      <Alert variant="error">{children}</Alert>
     ),
     ['success' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
-      <Alert variant="success" children={children} />
+      <Alert variant="success">{children}</Alert>
     ),
     ['warning' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
-      <Alert variant="warning" children={children} />
+      <Alert variant="warning">{children}</Alert>
     ),
     ['info' as keyof JSX.IntrinsicElements]: ({ children }: { children: string }) => (
-      <Alert variant="info" children={children} />
+      <Alert variant="info">{children}</Alert>
     ),
   },
+  createElement: React.createElement,
 })
 
 const markHtmlProcessor = markHastProcessor().use(rehypeStringify)

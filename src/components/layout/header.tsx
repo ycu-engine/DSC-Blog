@@ -13,9 +13,9 @@ export const Header: FC = () => {
   const { isOpen, onToggle } = useToggle(false)
 
   const pageLinks: PageLink[] = [
-    { name: 'Articles', link: '/' },
-    { name: 'About', link: '/' },
-    { name: 'Contact', link: '/' },
+    { link: '/', name: 'Articles' },
+    { link: '/', name: 'About' },
+    { link: '/', name: 'Contact' },
   ]
 
   return (

@@ -9,10 +9,10 @@ import { cn } from '@/lib/shadcn/utils'
 export const HeadingVariants = cva('inline-flex', {
   variants: {
     variant: {
-      title: 'text-title font-extrabold tracking-tight',
       h1: 'text-4xl font-extrabold tracking-tight lg:text-5xl',
       h2: 'text-3xl font-semibold tracking-tight',
       h3: 'text-2xl font-semibold tracking-tight',
+      title: 'text-title font-extrabold tracking-tight',
     },
   },
 })
