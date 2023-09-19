@@ -7,6 +7,34 @@
 - 倶楽部内で雑な投稿ができるページがほしい
 - 分野問わず、発信する習慣をつけてほしい
 
+# セットアップ
+
+前提
+
+- Linux or Macの実行環境
+- VSCode
+- Node開発環境(voltaでバージョン管理することを推奨します)
+- Docker Desktop
+
+## リポジトリのクローン
+
+```bash
+git clone <this repository>
+```
+
+## 起動
+
+```bash
+pnpm run dev
+```
+
+```bash
+pnpm run dev:db
+# 適宜
+pnpm run prisma:migrate
+pnpm run prisma:seed
+```
+
 ## 開発のルール
 
 ### Pull request、commitには[Gitmoji](https://gitmoji.dev/)をつける

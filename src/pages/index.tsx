@@ -1,11 +1,44 @@
 import { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import { Heading } from '@/components/ui/heading'
-import { Post } from '@/types/Post'
+
+import { graphql } from '@/gql'
+import { HomePageQuery } from '@/gql/graphql'
+import { createApolloClient } from '@/lib/apollo/cllient'
+
+const HomePageQueryDocument = graphql(/* GraphQL */ `
+  query HomePage {
+    posts {
+      ... on PostConnection {
+        nodes {
+          id
+          title
+          author {
+            fullName
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        totalCount
+      }
+    }
+  }
+`)
 
 type PageProps = {
-  posts: Post[]
+  posts: Array<{
+    __typename?: 'Post'
+    id: string
+    title: string
+    author: {
+      __typename?: 'MemberUser'
+      fullName: string
+    }
+  }>
 }
 
 /**
@@ -17,21 +50,25 @@ const Home: NextPage<PageProps> = ({ posts }) => (
       New Posts
     </Heading>
     <div className="flex gap-4">
-      {posts.map((post) => (
-        <Link href={`/posts/${post.id}`} key={post.id} className="duration-200 hover:opacity-90">
-          <div key={post.id} className="flex flex-col gap-4">
-            <Image
-              src={post.coverImageUri}
-              alt="Cover Image"
-              width={800}
-              height={600}
-              className="rounded-lg"
-            />
-            <p className="text-lg">・{post.author.name}</p>
-            <p className="text-2xl font-bold">{post.title}</p>
-          </div>
-        </Link>
-      ))}
+      {posts ? (
+        posts.map((post) => (
+          <Link href={`/posts/${post.id}`} key={post.id} className="duration-200 hover:opacity-90">
+            <div key={post.id} className="flex flex-col gap-4">
+              <Image
+                src={`https://source.unsplash.com/random/800x600?sig=${post.id}`}
+                alt="Cover Image"
+                width={800}
+                height={600}
+                className="rounded-lg"
+              />
+              <p className="text-lg">・{post.author.fullName}</p>
+              <p className="text-2xl font-bold">{post.title}</p>
+            </div>
+          </Link>
+        ))
+      ) : (
+        <p>記事がありません</p>
+      )}
     </div>
   </main>
 )
@@ -40,56 +77,22 @@ const Home: NextPage<PageProps> = ({ posts }) => (
  * SSG 記事の内容を取得する
  */
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const samplePosts: Post[] = [
-    {
-      author: {
-        email: 'testHanako@ycu.com',
-        id: '1',
-        name: 'テスト花子',
+  const client = createApolloClient()
+  const { data } = await client.query<HomePageQuery>({
+    query: HomePageQueryDocument,
+  })
+
+  if (data.posts.__typename === 'PostConnection') {
+    return {
+      props: {
+        posts: data.posts.nodes,
       },
-      content: '記事の内容',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      createdAt: '2021-01-01T00:00:00.000Z',
-      id: '1',
-      isPublic: true,
-      title:
-        'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      updatedAt: '2021-01-01T00:00:00.000Z',
-    },
-    {
-      author: {
-        email: 'testTarou@ycu.com',
-        id: '2',
-        name: 'テスト太郎',
-      },
-      content: '記事の内容',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      createdAt: '2021-01-01T00:00:00.000Z',
-      id: '2',
-      isPublic: true,
-      title:
-        'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      updatedAt: '2021-01-01T00:00:00.000Z',
-    },
-    {
-      author: {
-        email: 'ds@ycu.com',
-        id: '3',
-        name: 'テスト三郎',
-      },
-      content: '記事の内容',
-      coverImageUri: 'https://source.unsplash.com/random/800x800',
-      createdAt: '2021-01-01T00:00:00.000Z',
-      id: '3',
-      isPublic: true,
-      title:
-        'Cupidatat est veniam ad ut ullamco tempor. Irure et deserunt proident Lorem dolore reprehenderit enim esse cupidatat sit Lorem nisi nostrud Lorem ad.',
-      updatedAt: '2021-01-01T00:00:00.000Z',
-    },
-  ]
+    }
+  }
+
   return {
     props: {
-      posts: samplePosts,
+      posts: [],
     },
   }
 }

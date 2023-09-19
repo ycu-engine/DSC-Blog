@@ -15,6 +15,10 @@ const config: CodegenConfig = {
         contextType: '../context#GraphQLContext',
       },
     }),
+    // 全てのgraphqlファイルを一つのschemaにまとめる
+    'src/gql/schema.graphql': {
+      plugins: ['schema-ast'],
+    },
   },
   hooks: {
     afterAllFileWrite: ['prettier -w'],
