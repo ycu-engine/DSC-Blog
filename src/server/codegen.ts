@@ -16,7 +16,7 @@ const config: CodegenConfig = {
       },
     }),
     // 全てのgraphqlファイルを一つのschemaにまとめる
-    [`${PATH_TO_SERVER_DIR}/src/generated/schema.graphql`]: {
+    'src/gql/schema.graphql': {
       plugins: ['schema-ast'],
     },
   },

@@ -15,6 +15,6 @@ const config: CodegenConfig = {
     },
   },
   overwrite: true,
-  schema: 'src/server/src/generated/schema.graphql',
+  schema: 'src/gql/schema.graphql',
 }
 export default config
