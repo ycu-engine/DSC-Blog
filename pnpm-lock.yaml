@@ -11,6 +11,9 @@ dependencies:
   '@devoxa/prisma-relay-cursor-connection':
     specifier: ^3.1.0
     version: 3.1.0(@prisma/client@5.3.1)
+  '@graphql-typed-document-node/core':
+    specifier: ^3.2.0
+    version: 3.2.0(graphql@16.8.0)
   '@prisma/client':
     specifier: 5.3.1
     version: 5.3.1(prisma@5.3.1)

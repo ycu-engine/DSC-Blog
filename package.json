@@ -16,7 +16,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ci:setup": "pnpm install && pnpm run prisma:generate && pnpm run gqlgen:server",
+    "ci:setup": "pnpm install && pnpm run prisma:generate && pnpm run gqlgen:server && pnpm run gqlgen:client",
     "format:fix": "prettier -w .",
     "format:check": "prettier -c .",
     "lint:fix": "eslint --fix .",
@@ -36,6 +36,7 @@
   "dependencies": {
     "@apollo/client": "^3.8.3",
     "@devoxa/prisma-relay-cursor-connection": "^3.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@prisma/client": "5.3.1",
     "@radix-ui/react-slider": "^1.1.2",
     "@radix-ui/react-slot": "^1.0.2",
